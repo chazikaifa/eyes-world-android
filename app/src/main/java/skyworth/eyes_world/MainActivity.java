@@ -1,9 +1,11 @@
 package skyworth.eyes_world;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -31,7 +33,9 @@ public class MainActivity extends AppCompatActivity {
     private AnimationSet fade = new AnimationSet(false);
     private mThread load;
     private boolean isFirstLoad = true;
+    private RelativeLayout container;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
         XWalkPreferences.setValue(XWalkPreferences.ANIMATABLE_XWALK_VIEW, true);
         mXWalkView.setInitialScale(90);
         mXWalkView.setResourceClient(new mClient(mXWalkView));
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
